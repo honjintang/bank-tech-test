@@ -1,4 +1,4 @@
-require 'account'
+require './lib/account.rb'
 
 describe Account do
 
@@ -6,7 +6,6 @@ describe Account do
   let(:statement) { Statement.new}
   let(:max_daily_withdrawal) { 500 }
   let(:transaction) { double :transaction }
-  # let(:transaction) { { date: Time.stub(:now).and_return(Time.mktime(2017,15,5)) } }
 
   context "user has an empty balance" do
     describe '#initialize' do
@@ -15,7 +14,7 @@ describe Account do
       end
 
       it 'new accounts are initialized with an empty statement' do
-        expect(account.read_statement).to eq(statement)
+        expect(account.statement).to eq(statement)
       end
     end
 
@@ -61,13 +60,6 @@ describe Account do
         expect{ account.withdraw(100) }.to change { account.statement.transactions.length }.from(1).to(2)
       end
 
-    end
-
-    describe '#read_statement' do
-
-      xit 'user can print out their bank statement' do
-
-      end
     end
   end
 

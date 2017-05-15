@@ -24,7 +24,12 @@ class Account
   end
 
   def read_statement
-    self.statement
+    print "date || credit || debit || balance"
+    puts
+     self.statement.transactions.each do |row|
+       puts "#{row[:timestamp].to_s} || " + "#{row[:transaction].details[:credit]} || " + "#{row[:transaction].details[:debit]} || " + "#{row[:transaction].details[:balance]}"
+       puts ""
+     end
   end
 
 
@@ -44,20 +49,5 @@ class Account
     transaction.update_balance(self.balance)
     self.statement.add_transaction(transaction)
   end
-
-
-  # def update_statement_credit(amount)
-  #   transaction = Transaction.new(DateTime.new)
-  #   transaction.update_credit(amount)
-  #   transaction.update_balance(self.balance)
-  #   statement << transaction
-  # end
-
-  # def update_statement_debit(amount)
-  #   transaction = Transaction.new(DateTime.new)
-  #   transaction.update_debit(amount)
-  #   transaction.update_balance(self.balance)
-  #   statement << transaction
-  # end
 
 end

@@ -14,8 +14,7 @@ describe Statement do
   describe '#add_transaction' do
     it 'adds a transaction to the statement with timestamp' do
       statement.add_transaction(transaction)
-      expect(statement.transactions).to eq([{timestamp: DateTime.new,
-                                              transaction: transaction}])
+      expect(statement.transactions.length).to eq(1)
     end
 
   end
