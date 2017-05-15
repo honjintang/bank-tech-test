@@ -1,11 +1,10 @@
 class Transaction
   attr_reader :details
 
-  def initialize(date)
-    @details = { date: date,
-                      credit: 0,
-                      debit: 0,
-                      balance: 0}
+  def initialize
+    @details = { credit: 0,
+                  debit: 0,
+                  balance: 0}
   end
 
   def update_credit(amount)
@@ -22,5 +21,5 @@ class Transaction
 
   private
   attr_writer :details, :credit, :debit, :balance
-  
+
 end

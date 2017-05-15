@@ -3,11 +3,11 @@ require './lib/transaction.rb'
 describe Transaction do
 
   let(:current_date) { double :current_date }
-   subject(:transaction) { described_class.new(current_date) }
+   subject(:transaction) { described_class.new }
 
   describe "#initialize" do
-    it "is initialized with current date time" do
-      expect(transaction.details).to eq({ date: current_date,
+    it "is initialized with transaction details" do
+      expect(transaction.details).to eq({
                         credit: 0,
                         debit: 0,
                         balance: 0})

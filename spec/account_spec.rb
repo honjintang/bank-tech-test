@@ -3,7 +3,7 @@ require 'account'
 describe Account do
 
   subject(:account) { described_class.new(statement) }
-  let(:statement) { [] }
+  let(:statement) { Statement.new}
   let(:max_daily_withdrawal) { 500 }
   let(:transaction) { double :transaction }
   # let(:transaction) { { date: Time.stub(:now).and_return(Time.mktime(2017,15,5)) } }
@@ -15,7 +15,7 @@ describe Account do
       end
 
       it 'new accounts are initialized with an empty statement' do
-        expect(account.read_statement).to eq([])
+        expect(account.read_statement).to eq(statement)
       end
     end
 
@@ -42,7 +42,7 @@ describe Account do
       end
 
       it 'adds transaction to statement after deposit' do
-        expect(account.statement.length).to eq(1)
+        expect(account.statement.transactions.length).to eq(1)
       end
     end
 
@@ -58,7 +58,7 @@ describe Account do
       end
 
       it 'adds transaction to statement after withdrawal' do
-        expect{ account.withdraw(100) }.to change { account.statement.length }.from(1).to(2)
+        expect{ account.withdraw(100) }.to change { account.statement.transactions.length }.from(1).to(2)
       end
 
     end
