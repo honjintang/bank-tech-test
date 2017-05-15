@@ -1,5 +1,6 @@
 class Account
   attr_reader :balance, :transactions
+  MAX_DAILY_WITHDRAWAL = 500
 
   def initialize(transactions)
     @balance = 0
@@ -11,7 +12,10 @@ class Account
   end
 
   def withdraw(amount)
+    fail "You cannot have a negative balance" if self.balance - amount < 0
+    fail "You cannot withdraw more than #{MAX_DAILY_WITHDRAWAL} per day" if amount > MAX_DAILY_WITHDRAWAL
     self.balance -= amount
+
   end
 
   def read_statement
